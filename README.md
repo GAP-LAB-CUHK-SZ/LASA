@@ -23,18 +23,18 @@ Run the following commands to generate augmented partial point cloud for synthet
 ```angular2html
 cd process_scripts
 python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
-python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair ...
+python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
 ```
 Run the following command to extract image features
 ```angular2html
 cd process_scripts
 bash dist_extract_vit.sh
 ```
-Finally, run the following command to generate train/val splits:
+Finally, run the following command to generate train/val splits, please check ./dataset/taxonomy for the sub-cateory definition:
 ```angular2html
 cd process_scripts
 python generate_split_for_arkit --cat arkit_chair arkit_stool ...
-python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair ...
+python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
 ```
 
 ## Evaluation
