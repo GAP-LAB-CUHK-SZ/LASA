@@ -12,8 +12,8 @@ Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale 
 Complete raw data will be released soon.
 
 ## Download preprocessed data and processing
-Download the preprocessed data from <a href="https://pan.baidu.com/s/1tCEGYBH0DEh8NcAURTnMbw?pwd=62ux">
-BaiduYun (code: 62ux)<a/>. (Currently it only contains chair category, it will be fully released after the cleaning process) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
+Download the preprocessed data from <a href="https://pan.baidu.com/s/10jabZCSoTP4Yu1Eu3_twFg?pwd=z64v">
+BaiduYun (code: z64v)<a/>. (Currently it only contains chair category, it will be fully released after the cleaning process) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
 You can choose to the the script ./process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
 ```angular2html
 cd process_scripts
