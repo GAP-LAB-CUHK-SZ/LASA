@@ -13,7 +13,7 @@ Complete raw data will be released soon.
 
 ## Download preprocessed data and processing
 Download the preprocessed data from <a href="https://pan.baidu.com/s/1tCEGYBH0DEh8NcAURTnMbw?pwd=62ux">
-BaiduYun (code: 62ux)<a/>. (These data will be updated as cleaning process continues.) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
+BaiduYun (code: 62ux)<a/>. (Currently it only contains chair category, it will be fully released after the cleaning process) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
 You can choose to the the script ./process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
 ```angular2html
 cd process_scripts
