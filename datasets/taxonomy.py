@@ -1,20 +1,29 @@
+# category_map={
+#     "bathtub":0,
+#     "bed":1,
+#     "cabinet":2,
+#     "chair":3,
+#     "dishwasher":4,
+#     "fireplace":5,
+#     "oven":6,
+#     "refrigerator":7,
+#     "shelf":8,
+#     "sink":9,
+#     "sofa":10,
+#     "stool":11,
+#     "stove":12,
+#     "table":13,
+#     "toilet":14,
+#     "washer":15
+# }
+
 category_map={
-    "bathtub":0,
-    "bed":1,
-    "cabinet":2,
-    "chair":3,
-    "dishwasher":4,
-    "fireplace":5,
-    "oven":6,
-    "refrigerator":7,
-    "shelf":8,
-    "sink":9,
-    "sofa":10,
-    "stool":11,
-    "stove":12,
-    "table":13,
-    "toilet":14,
-    "washer":15
+    "chair":0,
+    "sofa":1,
+    "table":2,
+    "cabinet":3,
+    "bed":4,
+    "shelf":5
 }
 
 category_map_from_synthetic={

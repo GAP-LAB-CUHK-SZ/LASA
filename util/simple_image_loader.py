@@ -16,12 +16,8 @@ def image_transform(n_px):
         Resize(n_px, interpolation=BICUBIC),
         CenterCrop(n_px),
         ToTensor(),
-        # Normalize((123.675/255.0,116.28/255.0,103.53/255.0),
-        #           (58.395/255.0,57.12/255.0,57.375/255.0))
         Normalize((0.48145466, 0.4578275, 0.40821073),
                  (0.26862954, 0.26130258, 0.27577711)),
-        # Normalize((0.5, 0.5, 0.5),
-        #           (0.5, 0.5, 0.5)),
     ])
 
 class Image_dataset(data.Dataset):

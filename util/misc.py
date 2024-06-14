@@ -15,7 +15,7 @@ from pathlib import Path
 import torch
 import torch.distributed as dist
 #from torch._six import inf
-import inf
+import math
 import numpy as np
 
 def log_codefiles(data_root,save_root):

@@ -12,4 +12,4 @@ train_triplane_vae.py \
 --clip_grad 0.35 \
 --category chair \
 --data-pth ../data \
---replica 5
+--replica 5   7

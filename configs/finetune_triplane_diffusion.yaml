@@ -37,7 +37,7 @@ model:
     norm: "batch"
     img_in_channels: 1280
     vit_reso: 16
-    use_cat_embedding: ???
+    use_cat_embedding: False #only use category embedding when all categories are trained
     block_type: multiview_local
     par_point_encoder:
       plane_reso: 64
