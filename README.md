@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LASA
 Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale Aligned Shape Annotation Dataset accepted by CVPR 2024
 
@@ -81,18 +80,3 @@ All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
   year={2023}
 }
 ```
-=======
----
-title: LASA
-emoji: 🏃
-colorFrom: indigo
-colorTo: red
-sdk: gradio
-sdk_version: 4.32.2
-app_file: app.py
-pinned: false
-license: mit
----
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
->>>>>>> hf/main
