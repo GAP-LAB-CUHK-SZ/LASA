@@ -80,14 +80,3 @@ All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
   year={2023}
 }
 ```
-
----
-title: {{LASA}}
-emoji: {{emoji}}
-colorFrom: {{colorFrom}}
-colorTo: {{colorTo}}
-sdk: {{sdk}}
-sdk_version: "{{sdkVersion}}"
-app_file: app.py
-pinned: false
----
