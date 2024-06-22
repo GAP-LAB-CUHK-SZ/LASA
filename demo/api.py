@@ -92,7 +92,7 @@ if __name__=="__main__":
     import argparse
     parser=argparse.ArgumentParser()
     parser.add_argument("--data_dir", type=str, default="../example_process_data")
-    parser.add_argument('--scene_id', default="all", type=str)
+    parser.add_argument('--scene_id', default="example_1", type=str)
     parser.add_argument("--save_dir", type=str,default="../example_output_data")
     args = parser.parse_args()
 

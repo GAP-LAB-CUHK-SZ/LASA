@@ -74,14 +74,16 @@ def rotate_image(img, direction):
     return img
 
 parser=argparse.ArgumentParser()
-parser.add_argument("--data_folder",type=str,required=True)
+parser.add_argument("--data_dir",default="../example_data",type=str)
+parser.add_argument("--scene_id",default="example_1",type=str)
 parser.add_argument("--save_dir",type=str,default=r"../example_process_data")
 parser.add_argument("--debug",action="store_true",default=False)
 args=parser.parse_args()
 
-print("processing %s"%(args.data_folder))
+data_folder=os.path.join(args.data_dir,args.scene_id)
 
-data_folder=args.data_folder
+print("processing %s"%(data_folder))
+
 scene_name=os.path.basename(data_folder)
 save_folder=os.path.join(args.save_dir,scene_name)
 os.makedirs(save_folder,exist_ok=True)

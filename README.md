@@ -66,6 +66,19 @@ Finally, finetune the diffusion model on LASA dataset by running <strong> finetu
 
 Early stopping is used by mannualy stopping the training by 150 epochs and 500 epochs for training VAE model and diffusion model respetively.
 All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
+
+## Demo
+We prepare a RGBD scan data obtained using iPhone Arkit, which also output object detection results. 
+Firstly download example_1.zip from <a href="链接: https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
+BaiduYun (code: r7vs)<a/>. Then unzip it and put the example_1 folder at ./example_data/example_1 <br>
+Then, run the following commands to run the demo:
+```angular2html
+cd demo
+bash run_demo.sh
+```
+The results will be saved in ../example_output_data/example_1 further. <br>
+We will further develop a more user-friendly demo.
+
 ## TODO
 
 - [ ] Object Detection Code
