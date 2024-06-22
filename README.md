@@ -38,7 +38,7 @@ python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chai
 ```
 
 ## Evaluation
-Download the pretrained weight for chair from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> chair_checkpoint.<a/> (code:hlf9). 
+Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint.<a/> (code:hlf9). 
 Put these folder under LASA/output.<br> The ae folder stores the VAE weight, dm folder stores the diffusion model trained on synthetic data.
 finetune_dm folder stores the diffusion model finetuned on LASA dataset.
 Run the following commands to evaluate and extract the mesh:
