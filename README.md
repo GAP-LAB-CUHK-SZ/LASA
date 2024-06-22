@@ -53,7 +53,7 @@ make sure the --dm-pth points to the finetuned weight in the ./output/finetune_d
 under ./output_result.
 
 ## Training
-Run the <strong>train_VAE.sh</strong> to train the VAE model. If you aims to train on one category, just specify one category from <strong> chair, 
+Run the <strong>train_VAE.sh</strong> to train the VAE model. The --category entry in the script specify which category to train on. If you aims to train on one category, just specify one category from <strong> chair, 
 cabinet, table, sofa, bed, shelf</strong>. Inputting <strong>all</strong> will train on all categories. Makes sure to download and preprocess all 
 the required sub-category data. The sub-category arrangement can be found in ./datasets/taxonomy.py <br>
 After finish training the VAE model, run the following commands to pre-extract the VAE features for every object:
