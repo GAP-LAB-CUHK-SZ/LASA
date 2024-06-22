@@ -12,7 +12,7 @@ Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale 
 Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> to access raw data of LASA dataset.
 
 ## Download preprocessed data and processing
-Download the preprocessed data from <a href="链接: https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
+Download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
 BaiduYun (code: r7vs)<a/>. (I will update other download methods) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
 You can choose to use the script ./process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
 ```angular2html
@@ -69,7 +69,7 @@ All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
 
 ## Demo
 We prepare a RGBD scan data obtained using iPhone Arkit, which also output object detection results. 
-Firstly download example_1.zip from <a href="链接: https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
+Firstly download example_1.zip from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
 BaiduYun (code: r7vs)<a/>. Then unzip it and put the example_1 folder at ./example_data/example_1 <br>
 Then, run the following commands to run the demo:
 ```angular2html
