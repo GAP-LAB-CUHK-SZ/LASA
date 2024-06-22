@@ -9,7 +9,7 @@ Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale 
 ![292080638-324bbef9-c93b-4d96-b814-120204374383](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/ee07691a-8767-4701-9a32-19a70e0e240a)
 
 ## Dataset
-Complete raw data will be released soon.
+Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> to access raw data of LASA dataset.
 
 ## Download preprocessed data and processing
 Download the preprocessed data from <a href="https://pan.baidu.com/s/10jabZCSoTP4Yu1Eu3_twFg?pwd=z64v">
@@ -69,7 +69,7 @@ All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
 ## TODO
 
 - [ ] Object Detection Code
-- [ ] Code for Demo on both arkitscene and in the wild data
+- [x] Code for Demo on both arkitscene and in the wild data
 
 ## Citation
 ```
@@ -80,3 +80,14 @@ All experiments in the paper are conducted on 8 A100 GPUs with batch size = 22.
   year={2023}
 }
 ```
+
+---
+title: {{LASA}}
+emoji: {{emoji}}
+colorFrom: {{colorFrom}}
+colorTo: {{colorTo}}
+sdk: {{sdk}}
+sdk_version: "{{sdkVersion}}"
+app_file: app.py
+pinned: false
+---
