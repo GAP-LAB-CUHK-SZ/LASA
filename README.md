@@ -9,7 +9,20 @@ Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale 
 ![292080638-324bbef9-c93b-4d96-b814-120204374383](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/ee07691a-8767-4701-9a32-19a70e0e240a)
 
 ## Dataset
-Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> to access raw data of LASA dataset.
+Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> to access raw data of LASA dataset. (link has been updated since 2rd, July)
+<br> The dataset is organized as follows: <br>
+```
+sceneid/
+├── sceneid_faro_aligned_clean_0.04.ply # Cleaned and aligned laser scan of the scene
+├── sceneid_arkit_mesh.ply             	# TSDF-based mesh reconstruction of the scene
+├── sceneid_bbox.npy                    # Bounding box information for the scene
+└── instances/
+    └── cadid/
+        ├── catid_rgbd_mesh.ply         # TSDF-based mesh reconstruction of the instance
+        ├── catid_gt_mesh_2.obj         # Watertight Ground truth mesh of the instance
+        ├── catid_laser_pcd.ply    			# Point cloud of the instance from laser
+        └── catid_laser_pcd_mask.ply 		# Mask for the laser point cloud of the instance
+```
 
 ## Download preprocessed data and processing
 Download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
