@@ -23,6 +23,7 @@ sceneid/
         ├── catid_laser_pcd.ply    			# Point cloud of the instance from laser
         └── catid_laser_pcd_mask.ply 		# Mask for the laser point cloud of the instance
 ```
+The script of generating the preprocessed data for training will be released later
 
 ## Download preprocessed data and processing
 Download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
