@@ -1,6 +1,6 @@
 import torch.utils.data
 
-from .SingleView_dataset import Object_Occ,Object_PartialPoints_MultiImg
+from .Multiview_dataset import Object_Occ,Object_PartialPoints_MultiImg
 from .transforms import Scale_Shift_Rotate,Aug_with_Tran, Augment_Points
 from .taxonomy import synthetic_category_combined,synthetic_arkit_category_combined,arkit_category
 

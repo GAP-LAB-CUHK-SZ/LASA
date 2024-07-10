@@ -1005,7 +1005,7 @@ if __name__=="__main__":
 
     import sys
     sys.path.append("../..")
-    from datasets.SingleView_dataset import Object_PartialPoints_MultiImg
+    from datasets.Multiview_dataset import Object_PartialPoints_MultiImg
     from datasets.transforms import Aug_with_Tran
 
     dataset_config = {

@@ -10,7 +10,7 @@ import torch
 
 import trimesh
 
-from datasets.SingleView_dataset import Object_PartialPoints_MultiImg
+from datasets.Multiview_dataset import Object_PartialPoints_MultiImg
 from datasets.transforms import Scale_Shift_Rotate
 from models import get_model
 from pathlib import Path
