@@ -27,7 +27,7 @@ The script of generating the preprocessed data for training will be released lat
 
 ## Download preprocessed data and processing
 Download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
-BaiduYun (code: r7vs)<a/>. (I will update other download methods) Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
+BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
 You can choose to use the script ./process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
 ```angular2html
 cd process_scripts
