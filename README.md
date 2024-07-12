@@ -52,9 +52,10 @@ python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chai
 ```
 
 ## Evaluation
-Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint.<a/> (code:hlf9). 
+Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint BaiduYun<a/> (code:hlf9) or 
+<a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EiqBn0E9VANPmo0h0DMuSOUBJpR_Cy6rHIvDzlz169pcBA?e=Kd8TTz"> checkpoint SharePoint<a/>. 
 Put these folder under LASA/output.<br> The ae folder stores the VAE weight, dm folder stores the diffusion model trained on synthetic data.
-finetune_dm folder stores the diffusion model finetuned on LASA dataset.
+finetune_dm folder stores the diffusion model finetuned on LASA dataset. Only the ae and finetune_dm is needed for final evaluation.
 Run the following commands to evaluate and extract the mesh:
 ```angular2html
 cd evaluation
