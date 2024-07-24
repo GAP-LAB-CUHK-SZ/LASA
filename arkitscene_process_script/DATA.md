@@ -74,7 +74,7 @@ The mesh annotation is originally aligned with the Laser scan, and might be slig
 Therefore, we set **--consider_alignment** flag, which is used to further align the annotation with the RGB-D scan. 
 (In most of the cases, RGB-D mesh and laser point clouds are well aligned.)
 
-Next, Install <a href="https://github.com/hjwdzh/ManifoldPlus">ManifoldPlus</a>, and add the **build** folder to
+Next, Install <a href="https://github.com/hjwdzh/Manifold">Manifold</a>, and add the **build** folder to
 the **PATH** environment variable. Then, convert the gt mesh into watertight mesh by the following commands:
 ```angular2html
 python convert_watertight.py --lasa_dir <path_to_LASA_dataset>

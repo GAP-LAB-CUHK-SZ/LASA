@@ -14,7 +14,7 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     print("processing %s"%(mesh_path))
     highres_partial_path=os.path.join(folder,"%s_laser_pcd.ply"%(object_id))
     lowres_partial_path=os.path.join(folder,"%s_rgbd_mesh.ply"%(object_id))
-    #print(os.path.exists(mesh_path),os.path.exists(highres_partial_path))
+
     if os.path.exists(mesh_path)==False or os.path.exists(highres_partial_path)==False or \
         os.path.exists(lowres_partial_path)==False:
         return
@@ -26,10 +26,9 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
         align_mat=np.eye(4)
     occ_save_path=os.path.join(occ_save_dir,object_id+".npz")
     scale_save_path=os.path.join(occ_save_dir,object_id+".npy")
-    if os.path.exists(occ_save_dir):
-       print("skipping %s" % (occ_save_dir))
+    if os.path.exists(occ_save_path):
+       print("skipping %s" % (occ_save_path))
        return
-    print("processing %s" % (folder))
     tri_mesh=trimesh.load(mesh_path)
     highres_partial_point=trimesh.load(highres_partial_path)
     highres_partial_vert=np.asarray(highres_partial_point.vertices)
@@ -37,10 +36,11 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     lowres_partial_point = trimesh.load(lowres_partial_path)
     lowres_partial_vert = np.asarray(lowres_partial_point.vertices)
 
+    '''normalize '''
     vert = np.asarray(tri_mesh.vertices)
-    vert=np.dot(vert,align_mat[0:3,0:3].T)+align_mat[0:3,3]
-    vert=vert[:,[1,2,0]]
-    vert[:,2]*=-1
+    vert=np.dot(vert,align_mat[0:3,0:3].T)+align_mat[0:3,3] # align with the rgb-d points
+    vert=vert[:,[1,2,0]] #align with shapenet coordinate
+    vert[:,2]*=-1 #align with shapenet coordinate
     x_min, x_max = np.amin(vert[:, 0]), np.amax(vert[:, 0])
     y_min, y_max = np.amin(vert[:, 1]), np.amax(vert[:, 1])
     z_min, z_max = np.amin(vert[:, 2]), np.amax(vert[:, 2])
@@ -49,12 +49,27 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     center=np.array([(x_max+x_min)/2,(y_max+y_min)/2,(z_max+z_min)/2])
     vert=(vert-center)/max_length*2
 
-    highres_partial_vert=np.dot(highres_partial_vert[:,0:3],align_mat[0:3,0:3].T)+align_mat[0:3,3]
+    #tran_mat is used to put the results back to the scene
+    tran_mat=np.eye(4)
+    tran_mat=np.dot(align_mat,tran_mat)
+    tran_mat=np.dot(np.array([[0,1,0,0],
+                              [0,0,1,0],
+                              [-1,0,0,0],
+                              [0,0,0,1]]),tran_mat)
+    center_mat=np.eye(4)
+    center_mat[0:3,3]=-center
+    tran_mat=np.dot(center_mat,tran_mat)
+    tran_mat=np.dot(np.eye(4)/max_length*2,tran_mat)
+    tran_mat_save_folder=os.path.join(other_save_dir,"10_tranmat")
+    os.makedirs(tran_mat_save_folder,exist_ok=True)
+    np.save(os.path.join(tran_mat_save_folder,"tranmat.npy"),{"scene_id":scene_id,"tranmat":tran_mat},allow_pickle=True)
+
+    highres_partial_vert=np.dot(highres_partial_vert[:,0:3],align_mat[0:3,0:3].T)+align_mat[0:3,3] #align laser points to rgbd points
     highres_partial_vert=highres_partial_vert[:,[1,2,0]]
     highres_partial_vert[:,2]*=-1
+
     lowres_partial_vert=lowres_partial_vert[:,[1,2,0]]
     lowres_partial_vert[:,2]*=-1
-
     highres_partial_vert=(highres_partial_vert-center)/max_length*2
     lowres_partial_vert=(lowres_partial_vert-center)/max_length*2
 
@@ -109,9 +124,9 @@ save_dir=args.save_dir
 consider_alignment=args.consider_alignment
 
 if __name__=="__main__":
-    pool = mp.Pool(5)
+    pool = mp.Pool(1)
     scene_id_list=os.listdir(lasa_dir)
-    for scene_id in scene_id_list[0:]:
+    for scene_id in scene_id_list[0:10]:
         scene_folder=os.path.join(lasa_dir,scene_id)
         instance_folder=os.path.join(scene_folder,"instances")
         if os.path.exists(instance_folder)==False:
