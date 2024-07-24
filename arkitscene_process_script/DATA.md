@@ -1,12 +1,17 @@
 ## Raw Dataset processing for reconstruction training
-The procedure includes several steps. It firstly **select some frames** from the raw data, in which the
-objects are visible. Then, **super resolution** is employed to upscale the original low resolution images.
-Finally, it will **crop the objects in the image**, and **recompute the camera pose and 
-intrinsic matrix** for each image. All the scripts are inside <a href=https://github.com/GAP-LAB-CUHK-SZ/LASA/arkitscene_process_script>./arkitscene_process_script</a>.
+The procedure includes several steps. 
+- It firstly **select some frames** from the raw data, in which the
+objects are visible. 
+- Then, **super resolution** is employed to upscale the original low resolution images.
+- Then, it will **crop the objects in the image**, and **recompute the camera pose and 
+intrinsic matrix** for each image. 
+- Finally, convert CAD mesh into watertight mesh, and compute the occupancy for sampling points.
+
+All the scripts are inside <a href=https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script>./arkitscene_process_script</a>.
 <br>
 Firstly, download the ArkitScene 3dod dataset from <a href="https://github.com/apple/ARKitScenes">ArkitScene's repository</a>. We provide a list of annotated scene in
 <a href=https://github.com/GAP-LAB-CUHK-SZ/LASA/arkitscene_process_script/annotate_scene_list.txt>annotate_scene_list.txt</a>. Only these scene need to be downloaded.
-You can put the <a href="https://github.com/apple/ARKitScenes/blob/main/download_data.py">download_data.py</a> under LASA/arkitscene_process_script and use the following script to download the selected data:
+You can put the <a href="https://github.com/apple/ARKitScenes/blob/main/download_data.py">download_data.py</a> under **LASA/arkitscene_process_script** and use the following script to download the selected data:
 ```angular2html
 python donwload_select_arkitscene.py --save_dir <path_to_arkit>
 ```
@@ -22,7 +27,8 @@ python select_arkitscene_images.py --arkit_root <path_to_arkit_dataset/3dod> --s
 python select_arkitscene_images.py --arkit_root <path_to_arkit_dataset/3dod> --save_root <path_to_arkit_dataset/images> --split Validation
 ```
 Thirdly, install <a href="https://github.com/XPixelGroup/HAT"> HAT <a/> for super resolution on the low resolution images.
-Download the pretrained model HAT_SRx4_ImageNet-pretrain.pth from them, and put the file under /LASA/checkpoint/SR_model/HAT_SRx4_ImageNet-pretrain.pth. 
+Download the pretrained model **HAT_SRx4_ImageNet-pretrain.pth** from <a href="https://github.com/XPixelGroup/HAT"> HAT <a/>, 
+and put the checkpoint file under /LASA/checkpoint/SR_model/HAT_SRx4_ImageNet-pretrain.pth. 
 Then, run the following command to super resolution the images.
 ```angular2html
 CUDA_VISIBLE_DEVICES='0,1,2,3' torchrun --master_port 15000 --nproc_per_node=4 \
@@ -34,11 +40,9 @@ that the points can be projected to the crop images directly using this matrix:
 python crop_arkit_images.py --image_dir <path_to_arkit_dataset/images> --lasa_dir <path_to_LASA_dataset> \
 --arkit_dir <path_to_arkit_dataset/3dod> --consider_alignment
 ```
-The mesh annotation is originally aligned with the LiDAR scan, and might be slightly misaligned with the RGB-D scan.
+The mesh annotation is originally aligned with the Laser scan, and might be slightly misaligned with the RGB-D scan.
 Therefore, we set **--consider_alignment** flag, which is used to further align the annotation with the RGB-D scan. 
 (In most of the cases, RGB-D mesh and laser point clouds are well aligned.)
-The <object_id>_gt_mesh_2.ply will be better aligned with the RGB-D scan if you multiply it with the alignment matrix.
-<br>
 
 Next, Install <a href="https://github.com/hjwdzh/ManifoldPlus">ManifoldPlus</a>, and add the **build** folder to
 the **PATH** environment variable. Then, convert the gt mesh into watertight mesh by the following commands:
