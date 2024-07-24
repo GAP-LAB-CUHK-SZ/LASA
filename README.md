@@ -22,9 +22,9 @@ sceneid/
         ├── cadid_laser_pcd.ply    	    # Point cloud of the instance from laser
         └── alignment.txt 		        # An alignment matrix that align annotation to rgbd mesh
 ```
-Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script/DATA.md">DATA.md</a>
+Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script/DATA.md">DATA.md</a>.
+We also provide preprocessed data for download.
 
-## Install
 ## Installation
 The following steps have been tested on Ubuntu20.04.
 - You must have an NVIDIA graphics card with at least 12GB VRAM and have [CUDA](https://developer.nvidia.com/cuda-downloads) installed.
