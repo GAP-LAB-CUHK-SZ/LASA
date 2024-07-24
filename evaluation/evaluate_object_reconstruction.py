@@ -12,6 +12,7 @@ import trimesh
 
 from datasets.Multiview_dataset import Object_PartialPoints_MultiImg
 from datasets.transforms import Scale_Shift_Rotate
+from datasets.taxonomy import arkit_category
 from models import get_model
 from pathlib import Path
 import open3d as o3d
@@ -86,10 +87,11 @@ if __name__ == "__main__":
     transform = None
     if args.use_augmentation:
         transform=Scale_Shift_Rotate(jitter_partial=False,jitter=False,use_scale=False,angle=(-10,10),shift=(-0.1,0.1))
-    dataset_val = Object_PartialPoints_MultiImg(dataset_config['data_path'], split_filename=split_filename,categories=args.category,split="val",
+    dataset_val = Object_PartialPoints_MultiImg(dataset_config['data_path'], split_filename=split_filename,
+                                categories=arkit_category[args.category],split="val",
                                 transform=transform, sampling=False,
                                 num_samples=1024, return_surface=True,ret_sample=True,
-                                surface_sampling=True, par_pc_size=dataset_config['par_pc_size'],surface_size=100000,
+                                surface_sampling=True, par_pc_size=dataset_config['par_pc_size'],surface_size=100000, #use 100,000 to points to compute chamfer distance
                                 load_proj_mat=True,load_image=True,load_org_img=True,load_triplane=None,par_point_aug=None,replica=1)
     batch_size=1
 
@@ -145,11 +147,7 @@ if __name__ == "__main__":
             sample_points=data_batch["points"].cuda().float()
             labels=data_batch["labels"].cuda().float()
             sample_input=dm_model.prepare_sample_data(data_batch)
-            #t1 = time.time()
             sampled_array = dm_model.sample(sample_input,num_steps=36).float()
-            #t2 = time.time()
-            #sample_time = t2 - t1
-            #print("sampling time %f" % (sample_time))
             sampled_array = torch.nn.functional.interpolate(sampled_array, scale_factor=2, mode="bilinear")
             for j in range(sampled_array.shape[0]):
                 if args.save_mesh | args.save_par_points | args.save_image:
@@ -167,21 +165,12 @@ if __name__ == "__main__":
                 iou = iou.mean()
                 metric_logger.update(iou=iou.item())
 
-                if args.use_augmentation:
-                    tran_mat=data_batch["tran_mat"][j].numpy()
-                    mat_save_path='{}/tran_mat.npy'.format(object_folder)
-                    np.save(mat_save_path,tran_mat)
-
                 if args.eval_cd:
                     grid_list=torch.split(grid,128**3,dim=1)
                     output_list=[]
-                    #t3=time.time()
                     for sub_grid in grid_list:
                         output_list.append(ae_model.decode(sampled_array[j:j + 1],sub_grid))
                     output=torch.cat(output_list,dim=1)
-                    #t4=time.time()
-                    #decoding_time=t4-t3
-                    #print("decoding time:",decoding_time)
                     logits = output[j].detach()
 
                     volume = logits.view(density + 1, density + 1, density + 1).cpu().numpy()
@@ -189,7 +178,6 @@ if __name__ == "__main__":
 
                     verts *= gap
                     verts -= 1.1
-                    #print("vertice max min",np.amin(verts,axis=0),np.amax(verts,axis=0))
 
 
                     m = trimesh.Trimesh(verts, faces)

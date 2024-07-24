@@ -51,11 +51,10 @@ Run the following commands to evaluate and extract the mesh:
 cd evaluation
 bash dist_eval.sh
 ```
-The category entries are the sub-category from arkit scenes, please see ./datasets/taxonomy.py about how they are defined.
-For example, if you want to evaluate on LASA's chair, category should contain both arkit_chair and arkit_stool. 
 make sure the --ae-pth and --dm-pth entry points to the correct checkpoint path. If you are evaluating on LASA,
 make sure the --dm-pth points to the finetuned weight in the ./output/finetune_dm folder. The result will be saved
 under ./output_result.
+
 
 ## Training
 Run the <strong>train_VAE.sh</strong> to train the VAE model. The --category entry in the script specify which category to train on. If you aims to train on one category, just specify one category from <strong> chair, 
