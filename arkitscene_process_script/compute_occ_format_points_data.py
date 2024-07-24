@@ -14,6 +14,14 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     print("processing %s"%(mesh_path))
     highres_partial_path=os.path.join(folder,"%s_laser_pcd.ply"%(object_id))
     lowres_partial_path=os.path.join(folder,"%s_rgbd_mesh.ply"%(object_id))
+    bbox_path=os.path.join(os.path.dirname(os.path.dirname(folder)),scene_id+"_bbox.npy")
+    bbox_data=np.load(bbox_path,allow_pickle=True).item()
+    uids=bbox_data["uids"]
+    bboxes=bbox_data["bboxes"]
+
+    uid=object_id.split("_")[-1]
+    uid_ind=uids.index(uid)
+    bbox=bboxes[uid_ind]
 
     if os.path.exists(mesh_path)==False or os.path.exists(highres_partial_path)==False or \
         os.path.exists(lowres_partial_path)==False:
@@ -26,9 +34,9 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
         align_mat=np.eye(4)
     occ_save_path=os.path.join(occ_save_dir,object_id+".npz")
     scale_save_path=os.path.join(occ_save_dir,object_id+".npy")
-    if os.path.exists(occ_save_path):
-       print("skipping %s" % (occ_save_path))
-       return
+    # if os.path.exists(occ_save_path):
+    #    print("skipping %s" % (occ_save_path))
+    #    return
     tri_mesh=trimesh.load(mesh_path)
     highres_partial_point=trimesh.load(highres_partial_path)
     highres_partial_vert=np.asarray(highres_partial_point.vertices)
@@ -60,9 +68,9 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     center_mat[0:3,3]=-center
     tran_mat=np.dot(center_mat,tran_mat)
     tran_mat=np.dot(np.eye(4)/max_length*2,tran_mat)
-    tran_mat_save_folder=os.path.join(other_save_dir,"10_tranmat")
+    tran_mat_save_folder=os.path.join(other_save_dir,"10_tranmat",object_id)
     os.makedirs(tran_mat_save_folder,exist_ok=True)
-    np.save(os.path.join(tran_mat_save_folder,"tranmat.npy"),{"scene_id":scene_id,"tranmat":tran_mat},allow_pickle=True)
+    np.save(os.path.join(tran_mat_save_folder,"tranmat.npy"),{"scene_id":scene_id,"tranmat":tran_mat,"bbox":bbox},allow_pickle=True)
 
     highres_partial_vert=np.dot(highres_partial_vert[:,0:3],align_mat[0:3,0:3].T)+align_mat[0:3,3] #align laser points to rgbd points
     highres_partial_vert=highres_partial_vert[:,[1,2,0]]
@@ -106,6 +114,9 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     par_point_savefolder=os.path.join(other_save_dir,"5_partial_points",object_id)
     if os.path.exists(par_point_savefolder)==False:
         os.makedirs(par_point_savefolder)
+
+    #highres partial points is from laser scan
+    #lowres partial points is from rgbd scan
     highres_savepath=os.path.join(par_point_savefolder,"highres_partial_points_0.ply")
     lowres_savepath = os.path.join(par_point_savefolder, "lowres_partial_points_0.ply")
     print("saving to %s"%(highres_savepath))
@@ -124,9 +135,9 @@ save_dir=args.save_dir
 consider_alignment=args.consider_alignment
 
 if __name__=="__main__":
-    pool = mp.Pool(1)
+    pool = mp.Pool(10)
     scene_id_list=os.listdir(lasa_dir)
-    for scene_id in scene_id_list[0:10]:
+    for scene_id in scene_id_list[0:]:
         scene_folder=os.path.join(lasa_dir,scene_id)
         instance_folder=os.path.join(scene_folder,"instances")
         if os.path.exists(instance_folder)==False:
@@ -136,7 +147,7 @@ if __name__=="__main__":
             object_folder=os.path.join(instance_folder,object_id)
             category="_".join(object_id.split("_")[0:-1])
             occ_save_dir=os.path.join(save_dir,"occ_data","arkit_"+category)
-            other_save_dir=os.path.join(save_dir,"other_data","arkit_"+category,object_id)
+            other_save_dir=os.path.join(save_dir,"other_data","arkit_"+category)
             pool.apply_async(process_object,(object_folder,occ_save_dir,other_save_dir,consider_alignment))
             #process_object(object_folder,occ_save_dir,other_save_dir,consider_alignment)
         #process_object(folder_path)
