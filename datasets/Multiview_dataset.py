@@ -169,7 +169,7 @@ class Object_PartialPoints_MultiImg(data.Dataset):
                  return_surface=True, ret_sample=True,surface_sampling=True,
                  surface_size=20000,par_pc_size=2048, par_point_aug=None,par_prefix="aug7_",
                  load_proj_mat=False,load_image=False,load_org_img=False,max_img_length=5,load_triplane=True,replica=2,
-                 eval_multiview=False,scene_id=None,num_objects=-1):
+                 eval_multiview=False,num_objects=-1):
 
         self.surface_size = surface_size
         self.par_pc_size=par_pc_size
@@ -195,12 +195,6 @@ class Object_PartialPoints_MultiImg(data.Dataset):
         self.point_folder = os.path.join(self.dataset_folder, 'occ_data')
         self.mesh_folder = os.path.join(self.dataset_folder, 'other_data')
 
-        if scene_id is not None:
-            scene_model_map_path=os.path.join(self.dataset_folder,"modelid_in_sceneid.json")
-            with open(scene_model_map_path,'r') as f:
-                scene_model_map=json.load(f)
-            valid_modelid=scene_model_map[scene_id]
-
         if categories is None:
             categories = os.listdir(self.point_folder)
             categories = [c for c in categories if
@@ -222,8 +216,6 @@ class Object_PartialPoints_MultiImg(data.Dataset):
             for item in splits:
                 # print(item)
                 model_id = item['model_id']
-                if scene_id is not None and model_id not in valid_modelid:
-                    continue
                 image_filenames = item['image_filenames']
                 partial_filenames = item['partial_filenames']
                 if len(image_filenames)==0 or len(partial_filenames)==0:
