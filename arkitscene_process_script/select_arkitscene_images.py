@@ -73,11 +73,13 @@ for scene_id in scene_id_list:
 
     save_folder=os.path.join(save_root,scene_id)
     os.makedirs(save_folder,exist_ok=True)
+    if len(os.listdir(save_folder))>0:
+        continue
 
     gt_fn = os.path.join(data_root, scene_id, f'{scene_id}_3dod_annotation.json')
     skipped, boxes_corners, centers, sizes, labels, uids,bbox_voxels,boxes_mat = extract_gt(gt_fn)
     if skipped or boxes_corners.shape[0] == 0:
-        exit()
+        continue
     n_gt = boxes_corners.shape[0]
     label_type = np.array([labels, uids])
     df=pd.read_csv(os.path.join(args.arkit_root,'metadata.csv'))

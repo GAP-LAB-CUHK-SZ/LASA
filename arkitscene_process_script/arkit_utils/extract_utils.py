@@ -39,7 +39,9 @@ def extract_gt(gt_fn):
         centers = np.zeros((0, 3))
         sizes = np.zeros((0, 3))
         labels, uids = [], []
-        return skipped, boxes_corners, centers, sizes, labels, uids
+        bbox_voxels=np.zeros((0,128))
+        boxes_mat=np.zeros((0,4,4))
+        return skipped, boxes_corners, centers, sizes, labels, uids,bbox_voxels,boxes_mat
 
     boxes_corners = []
     centers = []
