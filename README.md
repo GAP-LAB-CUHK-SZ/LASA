@@ -24,6 +24,23 @@ sceneid/
 ```
 Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script/DATA.md">DATA.md</a>
 
+## Install
+## Installation
+The following steps have been tested on Ubuntu20.04.
+- You must have an NVIDIA graphics card with at least 12GB VRAM and have [CUDA](https://developer.nvidia.com/cuda-downloads) installed.
+- Install `Python >= 3.8`.
+- Install `PyTorch==2.3.0` and `torchvision==0.18.0`.
+```sh
+pip install torch==2.3.0 torchvision==0.18.0 --index-url https://download.pytorch.org/whl/cu118
+pip install torch-scatter -f https://data.pyg.org/whl/torch-2.3.0+cu118.html
+```
+
+- Install other dependencies:
+
+```sh
+pip install -r requirements.txt
+```
+
 ## Evaluation
 Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint BaiduYun<a/> (code:hlf9) or 
 <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EiqBn0E9VANPmo0h0DMuSOUBJpR_Cy6rHIvDzlz169pcBA?e=Kd8TTz"> checkpoint SharePoint<a/>. 
