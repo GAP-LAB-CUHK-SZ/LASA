@@ -35,7 +35,8 @@ python crop_arkit_images.py --image_dir <path_to_arkit_dataset/images> --lasa_di
 --arkit_dir <path_to_arkit_dataset/3dod> --consider_alignment
 ```
 The mesh annotation is originally aligned with the LiDAR scan, and might be slightly misaligned with the RGB-D scan.
-Therefore, we set --consider_alignment flag, which is used to further align the annotation with the RGB-D scan. 
+Therefore, we set **--consider_alignment** flag, which is used to further align the annotation with the RGB-D scan. 
+(In most of the cases, RGB-D mesh and laser point clouds are well aligned.)
 The <object_id>_gt_mesh_2.ply will be better aligned with the RGB-D scan if you multiply it with the alignment matrix.
 <br>
 
@@ -48,7 +49,7 @@ python convert_watertight.py --lasa_dir <path_to_LASA_dataset>
 
 Next, generate occupancy GT for the annotation, and format the RGB-D and LiDAR point cloud for inputs.
 ```angular2html
-
+python compute_occ_and_format_points_data.py --lasa_dir <path_to_LASA_dataset> --consider_alignment
 ```
 In case of running on a headless machine, you can refer to 
 <a href="https://pyrender.readthedocs.io/en/latest/install/index.html?highlight=ssh#getting-pyrender-working-with-osmesa">this page</a> for

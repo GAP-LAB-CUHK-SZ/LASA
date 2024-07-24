@@ -22,7 +22,7 @@ sceneid/
         ├── cadid_laser_pcd.ply    	    # Point cloud of the instance from laser
         └── alignment.txt 		        # An alignment matrix that align annotation to rgbd mesh
 ```
-Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/arkitscene_process_script/DATA.md">DATA.md</a>
+Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script/DATA.md">DATA.md</a>
 
 ## Evaluation
 Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint BaiduYun<a/> (code:hlf9) or 
