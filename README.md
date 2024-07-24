@@ -90,10 +90,11 @@ We will further develop a more user-friendly demo.
 
 ## Citation
 ```
-@article{liu2023lasa,
+@inproceedings{liu2024lasa,
   title={LASA: Instance Reconstruction from Real Scans using A Large-scale Aligned Shape Annotation Dataset},
   author={Liu, Haolin and Ye, Chongjie and Nie, Yinyu and He, Yingfan and Han, Xiaoguang},
-  journal={arXiv preprint arXiv:2312.12418},
-  year={2023}
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={20454--20464},
+  year={2024}
 }
 ```
