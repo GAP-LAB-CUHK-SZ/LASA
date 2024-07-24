@@ -5,11 +5,10 @@ Repository of LASA: Instance Reconstruction from Real Scans using A Large-scale 
 
 ## Demo Results
 ![292080623-3372c2d9-c788-49de-af62-4d90d2d8468e](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/51397fbb-e7bc-44ce-ada9-e9d7f81842ae)
-![292080628-a4b020dc-2673-4b1b-bfa6-ec9422625624](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/7a0dfc11-5454-428f-bfba-e8cd0d0af96e)
-![292080638-324bbef9-c93b-4d96-b814-120204374383](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/ee07691a-8767-4701-9a32-19a70e0e240a)
 
 ## Dataset
-Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> to access raw data of LASA dataset. (link has been updated since 2rd, July)
+Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> 
+to access raw data of LASA dataset. (link and data has been updated since 24th, July)
 <br> The dataset is organized as follows: <br>
 ```
 sceneid/
@@ -18,38 +17,12 @@ sceneid/
 ├── sceneid_bbox.npy                    # Bounding box information for the scene
 └── instances/
     └── cadid/
-        ├── catid_rgbd_mesh.ply         # TSDF-based mesh reconstruction of the instance
-        ├── catid_gt_mesh_2.obj         # Watertight Ground truth mesh of the instance
-        ├── catid_laser_pcd.ply    			# Point cloud of the instance from laser
-        └── catid_laser_pcd_mask.ply 		# Mask for the laser point cloud of the instance
+        ├── cadid_rgbd_mesh.ply         # TSDF-based mesh reconstruction of the instance
+        ├── cadid_gt_mesh_2.obj         # Ground truth mesh of the instance, aligned with laser
+        ├── cadid_laser_pcd.ply    	    # Point cloud of the instance from laser
+        └── alignment.txt 		        # An alignment matrix that align annotation to rgbd mesh
 ```
-The script of generating the preprocessed data for training will be released later
-
-## Download preprocessed data and processing
-Download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
-BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
-You can choose to use the script ./process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
-```angular2html
-cd process_scripts
-python unzip_all_data.py --unzip_occ --unzip_other
-```
-Run the following commands to generate augmented partial point cloud for synthetic dataset and LASA dataset
-```angular2html
-cd process_scripts
-python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
-python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
-```
-Run the following command to extract image features
-```angular2html
-cd process_scripts
-bash dist_extract_vit.sh
-```
-Finally, run the following command to generate train/val splits, please check ./dataset/taxonomy for the sub-cateory definition:
-```angular2html
-cd process_scripts
-python generate_split_for_arkit --cat arkit_chair arkit_stool ...
-python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
-```
+Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/arkitscene_process_script/DATA.md">DATA.md</a>
 
 ## Evaluation
 Download the pretrained weight for each category from <a href="https://pan.baidu.com/s/10liUOaC4CXGn7bN6SQkZsw?pwd=hlf9"> checkpoint BaiduYun<a/> (code:hlf9) or 
