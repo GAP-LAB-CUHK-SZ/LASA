@@ -1,3 +1,31 @@
+## Download preprocessed data and processing (Full preprocessed data will be updated in several days)
+You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
+BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. 
+Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
+Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
+Then, use the script LASA/process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
+```angular2html
+cd process_scripts
+python unzip_all_data.py --unzip_occ --unzip_other
+```
+Run the following commands to generate augmented partial point cloud for synthetic dataset and LASA dataset
+```angular2html
+cd process_scripts
+python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
+python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
+```
+Run the following command to extract image features
+```angular2html
+cd process_scripts
+bash dist_extract_vit.sh
+```
+Finally, run the following command to generate train/val splits, please check ./dataset/taxonomy for the sub-cateory definition:
+```angular2html
+cd process_scripts
+python generate_split_for_arkit --cat arkit_chair arkit_stool ...
+python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
+```
+
 ## Raw Dataset processing for reconstruction training
 The procedure includes several steps. 
 - It firstly **select some frames** from the raw data, in which the
@@ -58,30 +86,3 @@ python compute_occ_and_format_points_data.py --lasa_dir <path_to_LASA_dataset> -
 In case of running on a headless machine, you can refer to 
 <a href="https://pyrender.readthedocs.io/en/latest/install/index.html?highlight=ssh#getting-pyrender-working-with-osmesa">this page</a> for
 how to use Mesa for computing the sdf or occupancy values.
-
-## Download preprocessed data and processing
-You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
-BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. 
-Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
-Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
-Then, use the script LASA/process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
-```angular2html
-cd process_scripts
-python unzip_all_data.py --unzip_occ --unzip_other
-```
-Run the following commands to generate augmented partial point cloud for synthetic dataset and LASA dataset
-```angular2html
-cd process_scripts
-python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
-python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
-```
-Run the following command to extract image features
-```angular2html
-cd process_scripts
-bash dist_extract_vit.sh
-```
-Finally, run the following command to generate train/val splits, please check ./dataset/taxonomy for the sub-cateory definition:
-```angular2html
-cd process_scripts
-python generate_split_for_arkit --cat arkit_chair arkit_stool ...
-python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
