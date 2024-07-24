@@ -2,6 +2,23 @@
 You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
 BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. 
 
+Format of the prepare data is as follows:
+```
+other_data/
+└── category/
+    ├── 4_pointcloud     # point clouds sampled from CAD annotation
+    ├── 6_images         # images that contains this images
+    ├── 8_proj_matrix    # project matrix, that project 3d points to 2D image coordinate
+    └── 5_partial_points/        # partial point clouds cropped from laser scan and rgb-d scan
+        └── cadid/
+                ├── highres_partial_points_0.ply    # point clouds cropped from laser scan
+                └── lowres_partial_points_0.ply    	# point clouds cropped from rgb-d scan
+ 
+other_data/
+└── category/
+        ├── cadid.npz   # contains samples and occupancy data 
+        └── cadid.npy   # contains scale information (default is 1, except for ShapeNet dataset)
+```
 Put **occ_data** **other_data** under **LASA/data**, put **open_clip_pytorch_model.bin** under **/LASA**. 
 Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
 Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands:
