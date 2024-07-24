@@ -14,7 +14,7 @@ other_data/
                 ├── highres_partial_points_0.ply    # point clouds cropped from laser scan
                 └── lowres_partial_points_0.ply    	# point clouds cropped from rgb-d scan
  
-other_data/
+occ_data/
 └── category/
         ├── cadid.npz   # contains samples and occupancy data 
         └── cadid.npy   # contains scale information (default is 1, except for ShapeNet dataset)
