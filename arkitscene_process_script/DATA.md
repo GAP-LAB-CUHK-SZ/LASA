@@ -1,27 +1,29 @@
 ## Download preprocessed data and processing (Full preprocessed data will be updated in several days)
 You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
 BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. 
-Put all the downloaded data under LASA, unzip the align_mat_all.zip mannually. 
+
+Put **occ_data** **other_data** under **LASA/data**, put **open_clip_pytorch_model.bin** under **/LASA**. 
 Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
-Then, use the script LASA/process_scripts/unzip_all_data to unzip all the data in occ_data and other_data by following commands:
+Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands:
 ```angular2html
-cd process_scripts
+cd LASA/process_scripts
 python unzip_all_data.py --unzip_occ --unzip_other
 ```
-Run the following commands to generate augmented partial point cloud for synthetic dataset and LASA dataset
+Run the following commands to generate **augmented partial point cloud** for synthetic dataset and LASA dataset
 ```angular2html
-cd process_scripts
+cd LASA/process_scripts
 python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
 python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
 ```
-Run the following command to extract image features
+Run the following command to **extract image features**
 ```angular2html
-cd process_scripts
+cd LASA/process_scripts
 bash dist_extract_vit.sh
 ```
-Finally, run the following command to generate train/val splits, please check ./dataset/taxonomy for the sub-cateory definition:
+Finally, run the following command to generate **train/val splits**, please check ./dataset/taxonomy for the sub-cateory definition, and 
+run all the categories that you want to use.
 ```angular2html
-cd process_scripts
+cd LASA/process_scripts
 python generate_split_for_arkit --cat arkit_chair arkit_stool ...
 python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
 ```
