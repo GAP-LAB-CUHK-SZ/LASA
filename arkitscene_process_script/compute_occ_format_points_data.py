@@ -1,4 +1,5 @@
 import os
+#os.environ['PYOPENGL_PLATFORM'] = 'osmesa'
 import mesh_to_sdf
 #os.environ['PYOPENGL_PLATFORM'] = 'osmesa'
 os.environ["OMP_NUM_THREADS"]="2"
@@ -11,7 +12,6 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
     object_id = folder.split(os.sep)[-1]
     scene_id = folder.split(os.sep)[-3]
     mesh_path = os.path.join(folder,"%s_watertight.obj"%(object_id))
-    print("processing %s"%(mesh_path))
     highres_partial_path=os.path.join(folder,"%s_laser_pcd.ply"%(object_id))
     lowres_partial_path=os.path.join(folder,"%s_rgbd_mesh.ply"%(object_id))
     bbox_path=os.path.join(os.path.dirname(os.path.dirname(folder)),scene_id+"_bbox.npy")
@@ -34,9 +34,10 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
         align_mat=np.eye(4)
     occ_save_path=os.path.join(occ_save_dir,object_id+".npz")
     scale_save_path=os.path.join(occ_save_dir,object_id+".npy")
-    # if os.path.exists(occ_save_path):
-    #    print("skipping %s" % (occ_save_path))
-    #    return
+    if os.path.exists(occ_save_path):
+       print("skipping %s" % (occ_save_path))
+       return
+    print("processing %s" % (mesh_path))
     tri_mesh=trimesh.load(mesh_path)
     highres_partial_point=trimesh.load(highres_partial_path)
     highres_partial_vert=np.asarray(highres_partial_point.vertices)

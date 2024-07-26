@@ -107,4 +107,5 @@ python compute_occ_and_format_points_data.py --lasa_dir <path_to_LASA_dataset> -
 ```
 In case of running on a headless machine, you can refer to 
 <a href="https://pyrender.readthedocs.io/en/latest/install/index.html?highlight=ssh#getting-pyrender-working-with-osmesa">this page</a> for
-how to use Mesa for computing the sdf or occupancy values.
+how to use Mesa for computing the sdf or occupancy values, and remember to set the environment variable **PYOPENGL_PLATFORM="osmesa"**. 
+Or try **xvfb** library to create a virtual display. 

@@ -103,7 +103,7 @@ for scene_id in scene_id_list:
         #print(sub_category)
 
         mesh_folder=os.path.join(lasa_dir,scene_id,"instances",object_id)
-        mesh_path=glob.glob(mesh_folder+"/%s_gt*.obj"%(object_id))
+        mesh_path=glob.glob(mesh_folder+"/%s_gt*.obj"%(object_id))+glob.glob(mesh_folder+"/%s_watertight*.obj"%(object_id))
         #print(mesh_path)
         if len(mesh_path)==0: #this instance does not have annotation
             continue
@@ -133,7 +133,10 @@ for scene_id in scene_id_list:
         image_save_folder=os.path.join(other_save_dir,"arkit_"+sub_category,"6_images",object_id)
         proj_mat_save_folder=os.path.join(other_save_dir,"arkit_"+sub_category,"8_proj_matrix",object_id)
 
+        if os.path.exists(image_folder)==False:
+            continue
         image_list = os.listdir(image_folder)
+        image_list = [filename for filename in image_list if ".jpg" in filename]
 
         intrinsic_folder = os.path.join(arkit_dir,"Training", scene_id, scene_id+"_frames","lowres_wide_intrinsics")
         if os.path.exists(intrinsic_folder)==False:
