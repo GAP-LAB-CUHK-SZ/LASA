@@ -17,7 +17,7 @@ import datetime
 import torch.distributed as dist
 import yaml
 from collections import OrderedDict
-from util import misc
+import misc
 
 
 def setup_for_distributed(is_master):

@@ -1,0 +1,3 @@
+[submodule "submodules/DisCo"]
+	path = submodules/DisCo
+	url = https://github.com/GAP-LAB-CUHK-SZ/DisCo
