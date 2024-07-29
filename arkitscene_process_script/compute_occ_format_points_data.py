@@ -136,7 +136,7 @@ save_dir=args.save_dir
 consider_alignment=args.consider_alignment
 
 if __name__=="__main__":
-    pool = mp.Pool(10)
+    pool = mp.Pool(6)
     scene_id_list=os.listdir(lasa_dir)
     for scene_id in scene_id_list[0:]:
         scene_folder=os.path.join(lasa_dir,scene_id)

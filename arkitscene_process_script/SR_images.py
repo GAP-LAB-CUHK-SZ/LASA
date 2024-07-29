@@ -226,7 +226,6 @@ for idx,item in enumerate(dataloader):
         highres_image_pil=Image.fromarray(highres_image[i])
         basename=basename_list[i]
         save_folder=os.path.join(save_dir,scene_id_list[i],object_id_list[i],"highres_color")
-        if os.path.exists(save_folder)==False:
-            os.makedirs(save_folder)
-        save_path=os.path.join(save_folder,basename)
+        os.makedirs(save_folder,exist_ok=True)
+        save_path=os.path.join(save_folder,basename.replace(".png",".jpg"))
         highres_image_pil.save(save_path)
