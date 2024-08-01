@@ -1,6 +1,5 @@
-## Download preprocessed data and processing (Full preprocessed data will be updated in several days)
-You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
-BaiduYun (code: r7vs)<a/> or <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/EmMw149zXuhNuWzJMVxvF7kBfUEKUkKpYO6apJNw0HSKqA?e=hEMRUh">Onedrive SharePoint<a/>. 
+## Download preprocessed data and processing (Already released)
+You can choose to process the raw data of LASA by yourself, or download the preprocessed data from <a href="https://cuhko365.sharepoint.com/:f:/s/CUHKSZ_SSE_GAP-Lab2/Eu_V8OWr7VdDj--6xzWm2AwBuJsDBOLHA2z09D29cQtq_g?e=fkEpPo">Onedrive SharePoint<a/>. 
 
 Format of the prepare data is as follows:
 ```

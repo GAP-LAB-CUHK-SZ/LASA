@@ -22,8 +22,8 @@ sceneid/
 └── instances/
     └── cadid/
         ├── cadid_rgbd_mesh.ply         # TSDF-based mesh reconstruction of the instance
-        ├── cadid_gt_mesh.obj           # Artist-made Ground Truth mesh of the instance, aligned with laser 
-        ├── cadid_gt_mesh_2.obj         # Watertight Ground Truth mesh of the instance, aligned with laser
+        ├── cadid_watertight.obj        # Watertight mesh of the instance, aligned with laser 
+        ├── cadid_gt_mesh_2.obj         # Artist-made Ground Truth mesh of the instance, aligned with laser
         ├── cadid_laser_pcd.ply    	    # Point cloud of the instance from laser
         └── alignment.txt 		          # An alignment matrix that align annotation to rgbd mesh
 ```
