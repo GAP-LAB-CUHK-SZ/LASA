@@ -28,8 +28,8 @@ python unzip_all_data.py --unzip_occ --unzip_other
 Run the following commands to generate **augmented partial point cloud** for synthetic dataset and LASA dataset
 ```angular2html
 cd LASA/process_scripts
-python augment_arkit_partial_point.py --cat arkit_chair arkit_stool ...
-python augment_synthetic_partial_point.py --cat 03001627 future_chair ABO_chair future_stool ...
+python augment_arkit_partial_point.py
+python augment_synthetic_partial_point.py
 ```
 Run the following command to **extract image features**
 ```angular2html
@@ -40,8 +40,8 @@ Finally, run the following command to generate **train/val splits**, please chec
 run all the categories that you want to use.
 ```angular2html
 cd LASA/process_scripts
-python generate_split_for_arkit --cat arkit_chair arkit_stool ...
-python generate_split_for_synthetic_data.py --cat 03001627 future_chair ABO_chair future_stool ...
+python generate_split_for_arkit
+python generate_split_for_synthetic_data.py
 ```
 
 ## Raw Dataset processing for reconstruction training
