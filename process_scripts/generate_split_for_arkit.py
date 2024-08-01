@@ -8,7 +8,7 @@ import glob
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--keyword",default="lowres",type=str)
-parser.add_argument("--root_dir",type=str,default="../data")
+parser.add_argument("--root_dir",type=str,default="../LASA/submodules/DisCo/data")
 args=parser.parse_args()
 
 keyword=args.keyword

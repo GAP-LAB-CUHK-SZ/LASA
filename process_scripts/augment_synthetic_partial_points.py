@@ -13,7 +13,7 @@ from datasets.taxonomy import synthetic_category_combined
 
 import argparse
 parser=argparse.ArgumentParser()
-parser.add_argument("--root_dir",type=str,default="../data/other_data")
+parser.add_argument("--root_dir",type=str,default="../LASA/submodules/DisCo/data/other_data")
 args=parser.parse_args()
 category_list=os.listdir(args.data_root)
 category_list=[category for category in category_list if "arkit_" not in category]
