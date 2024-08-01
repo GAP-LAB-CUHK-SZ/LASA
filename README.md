@@ -31,7 +31,7 @@ Data preprocessing and preparation can be found in <a href="https://github.com/G
 We also provide preprocessed data for download.
 
 
-## Demo
+## Demo (will be updated)
 We prepare a RGBD scan data obtained using iPhone Arkit, which also output object detection results. 
 Firstly download example_1.zip from <a href="https://pan.baidu.com/s/1X6k82UNG-1hV_FIthnlwcQ?pwd=r7vs">
 BaiduYun (code: r7vs)<a/>. Then unzip it and put the example_1 folder at ./example_data/example_1 <br>
