@@ -3,8 +3,8 @@ import glob
 import argparse
 
 parser = argparse.ArgumentParser("unzip the prepared data")
-parser.add_argument("--occ_root", type=str, default="../LASA/submodules/DisCo/data/occ_data")
-parser.add_argument("--other_root", type=str,default="../LASA/submodules/DisCo/data/other_data")
+parser.add_argument("--occ_root", type=str, default="../submodules/DisCo/data/occ_data")
+parser.add_argument("--other_root", type=str,default="../submodules/DisCo/data/other_data")
 parser.add_argument("--unzip_occ",default=False,action="store_true")
 parser.add_argument("--unzip_other",default=False,action="store_true")
 

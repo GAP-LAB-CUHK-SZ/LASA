@@ -1,13 +1,12 @@
 import os,sys
 sys.path.append("..")
-import numpy
 from simple_dataset import Simple_InTheWild_dataset
 import argparse
 from torch.utils.data import DataLoader
 import timm
 import torch
 import numpy as np
-from util import misc
+from process_scripts import misc
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--data_dir",type=str,default="../example_process_data")

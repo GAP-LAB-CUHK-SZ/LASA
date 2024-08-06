@@ -7,7 +7,7 @@ import argparse
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--cat",required=True,type=str,nargs="+")
-parser.add_argument("--root_dir",type=str,default="../LASA/submodules/DisCo/data")
+parser.add_argument("--root_dir",type=str,default="../submodules/DisCo/data")
 args=parser.parse_args()
 
 sdf_folder="occ_data"

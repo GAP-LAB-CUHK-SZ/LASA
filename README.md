@@ -30,6 +30,9 @@ sceneid/
 Data preprocessing and preparation can be found in <a href="https://github.com/GAP-LAB-CUHK-SZ/LASA/blob/main/arkitscene_process_script/DATA.md">DATA.md</a>.
 We also provide preprocessed data for download.
 
+## Training and Evaluation
+The training code and evaluation is under the submodule DisCo. Please refer to the [DisCo](https://github.com/GAP-LAB-CUHK-SZ/DisCo.git).
+
 
 ## Demo (will be updated)
 We prepare a RGBD scan data obtained using iPhone Arkit, which also output object detection results. 

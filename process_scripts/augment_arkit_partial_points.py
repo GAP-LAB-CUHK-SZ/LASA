@@ -13,7 +13,7 @@ sys.path.append("..")
 
 parser=argparse.ArgumentParser()
 parser.add_argument("--keyword",type=str,default="lowres") #augment only the low resolution points
-parser.add_argument("--data_root",type=str,default="../LASA/submodules/DisCo/data/other_data")
+parser.add_argument("--data_root",type=str,default="../submodules/DisCo/data/other_data")
 args=parser.parse_args()
 category_list=os.listdir(args.data_root)
 category_list=[category for category in category_list if "arkit_" in category]
