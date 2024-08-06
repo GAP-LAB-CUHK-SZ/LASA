@@ -20,7 +20,7 @@ occ_data/
 ```
 Put **occ_data** **other_data** under **/LASA/submodules/DisCo/data**, put **open_clip_pytorch_model.bin** under **/LASA/submodules/DisCo**. 
 Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
-Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands:
+Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands (PS. make sure unrar and 7zip is installed):
 ```angular2html
 cd LASA/process_scripts
 python unzip_all_data.py --unzip_occ --unzip_other
@@ -28,14 +28,14 @@ python unzip_all_data.py --unzip_occ --unzip_other
 Run the following commands to generate **augmented partial point cloud** for synthetic dataset and LASA dataset
 ```angular2html
 cd LASA/process_scripts
-python augment_arkit_partial_point.py
-python augment_synthetic_partial_point.py
+python augment_arkit_partial_points.py
+python augment_synthetic_partial_points.py
 ```
 Finally, run the following command to generate **train/val splits**, please check ./dataset/taxonomy for the sub-cateory definition, and 
-run all the categories that you want to use.
+run all the categories that you want to use. 
 ```angular2html
 cd LASA/process_scripts
-python generate_split_for_arkit
+python generate_split_for_arkit.py
 python generate_split_for_synthetic_data.py
 ```
 

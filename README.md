@@ -31,7 +31,7 @@ Data preprocessing and preparation can be found in <a href="https://github.com/G
 We also provide preprocessed data for download.
 
 ## Training and Evaluation
-The training code and evaluation is under the submodule DisCo. Please refer to the [DisCo](https://github.com/GAP-LAB-CUHK-SZ/DisCo.git).
+The training and evaluation code are under the submodule DisCo. Please refer to the [DisCo](https://github.com/GAP-LAB-CUHK-SZ/DisCo.git).
 
 
 ## Demo (will be updated)

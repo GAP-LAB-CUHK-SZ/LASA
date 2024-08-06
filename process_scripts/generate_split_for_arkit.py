@@ -15,24 +15,10 @@ keyword=args.keyword
 sdf_folder="occ_data"
 other_folder="other_data"
 data_dir=args.root_dir
-
-align_dir=os.path.join(args.root_dir,"align_mat_all") # this alignment matrix is aligned from highres scan to lowres scan
-# the alignment matrix is still under cleaning, not all the data have proper alignment matrix yet.
-align_filelist=glob.glob(align_dir+"/*/*.txt")
-valid_model_list=[]
-for align_filepath in align_filelist:
-    if "-v" in align_filepath:
-        align_mat=np.loadtxt(align_filepath)
-        if align_mat.shape[0]!=4:
-            continue
-        model_id=os.path.basename(align_filepath).split("-")[0]
-        valid_model_list.append(model_id)
-
-print("there are %d valid lowres models"%(len(valid_model_list)))
-
 category_list=os.listdir(os.path.join(args.root_dir,other_folder))
 category_list=[category for category in category_list if "arkit_" in category]
 for category in category_list:
+    print("processing %s"%(category))
     train_path=os.path.join(data_dir,sdf_folder,category,"train.lst")
     with open(train_path,'r') as f:
         train_list=f.readlines()
@@ -54,8 +40,6 @@ for category in category_list:
     train_par_img_list=[]
     val_par_img_list=[]
     for model_id in model_id_list:
-        if model_id not in valid_model_list:
-            continue
         image_dir=os.path.join(data_dir,other_folder,category,"6_images",model_id)
         partial_dir=os.path.join(data_dir,other_folder,category,"5_partial_points",model_id)
         if os.path.exists(image_dir)==False and os.path.exists(partial_dir)==False:

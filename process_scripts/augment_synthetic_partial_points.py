@@ -9,13 +9,11 @@ import tqdm
 import multiprocessing as mp
 import sys
 sys.path.append("..")
-from datasets.taxonomy import synthetic_category_combined
-
 import argparse
 parser=argparse.ArgumentParser()
 parser.add_argument("--root_dir",type=str,default="../submodules/DisCo/data/other_data")
 args=parser.parse_args()
-category_list=os.listdir(args.data_root)
+category_list=os.listdir(args.root_dir)
 category_list=[category for category in category_list if "arkit_" not in category]
 
 kmeans=KMeans(
@@ -46,7 +44,6 @@ def process_data(src_filepath,save_path):
 
 pool=mp.Pool(10)
 for cat in category_list:
-    print("processing %s"%cat)
     point_dir=os.path.join(args.root_dir,cat,"5_partial_points")
     folder_list=os.listdir(point_dir)
     for folder in folder_list[:]:
@@ -55,6 +52,7 @@ for cat in category_list:
         for src_filepath in src_filelist:
             basename=os.path.basename(src_filepath)
             save_path = os.path.join(point_dir, folder, "aug7_" + basename)
+            #process_data(src_filepath,save_path)
             pool.apply_async(process_data,(src_filepath,save_path))
 pool.close()
 pool.join()

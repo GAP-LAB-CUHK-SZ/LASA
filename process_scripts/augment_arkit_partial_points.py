@@ -47,10 +47,11 @@ def process_data(src_point_path,save_folder,keyword):
 
 pool=mp.Pool(10)
 for cat in category_list[0:]:
+    print("processing category %s"%(cat))
     keyword=args.keyword
     point_dir = os.path.join(args.data_root,cat,"5_partial_points")
     folder_list=os.listdir(point_dir)
-    for folder in tqdm.tqdm(folder_list[0:]):
+    for folder in folder_list[0:]:
         folder_path=os.path.join(point_dir,folder)
         src_point_path=os.path.join(point_dir,folder,"%s_partial_points_0.ply"%(keyword))
         if os.path.exists(src_point_path)==False:
