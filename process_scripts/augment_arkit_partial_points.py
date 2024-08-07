@@ -1,6 +1,7 @@
 import numpy as np
 import scipy
 import os
+os.environ["OMP_NUM_THREADS"]="5" #limit thread to speed up
 import trimesh
 from sklearn.cluster import KMeans
 import random
