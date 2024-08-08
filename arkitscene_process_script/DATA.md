@@ -18,7 +18,7 @@ occ_data/
         ├── cadid.npz   # contains samples and occupancy data 
         └── cadid.npy   # contains scale information (default is 1, except for ShapeNet dataset)
 ```
-Put **occ_data** **other_data** under **/LASA/submodules/DisCo/data**, put **open_clip_pytorch_model.bin** under **/LASA/submodules/DisCo**. 
+Put **occ_data** **other_data** under **/LASA/submodules/DisCo/data**, put **open_clip_pytorch_model.bin** under **/LASA/submodules/DisCo/data**. 
 Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
 Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands (PS. make sure unrar and 7zip is installed):
 ```angular2html

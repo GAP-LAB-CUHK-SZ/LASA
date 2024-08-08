@@ -6,14 +6,12 @@ import json
 import argparse
 
 parser=argparse.ArgumentParser()
-parser.add_argument("--cat",required=True,type=str,nargs="+")
 parser.add_argument("--root_dir",type=str,default="../submodules/DisCo/data")
 args=parser.parse_args()
 
 sdf_folder="occ_data"
-other_folder="other_folder"
+other_folder="other_data"
 data_dir=args.root_dir
-category=args.cat
 
 category_list=os.listdir(os.path.join(args.root_dir,other_folder))
 category_list=[category for category in category_list if "arkit_" not in category]
