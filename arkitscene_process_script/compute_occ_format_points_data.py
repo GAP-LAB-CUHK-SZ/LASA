@@ -47,6 +47,13 @@ def process_object(folder,occ_save_dir,other_save_dir,consider_alignment):
 
     '''normalize '''
     vert = np.asarray(tri_mesh.vertices)
+
+    #flip the axis firstly, sorry for the confusing, since the alignment matrix is defined in another coordinate system
+    highres_partial_vert=highres_partial_vert[:,[2,0,1]]
+    lowres_partial_vert=lowres_partial_vert[:,[2,0,1]]
+    vert=vert[:,[2,0,1]]
+
+
     vert=np.dot(vert,align_mat[0:3,0:3].T)+align_mat[0:3,3] # align with the rgb-d points
     vert=vert[:,[1,2,0]] #align with shapenet coordinate
     vert[:,2]*=-1 #align with shapenet coordinate
@@ -138,7 +145,7 @@ consider_alignment=args.consider_alignment
 if __name__=="__main__":
     pool = mp.Pool(6)
     scene_id_list=os.listdir(lasa_dir)
-    for scene_id in scene_id_list[0:]:
+    for scene_id in scene_id_list[0:3]:
         scene_folder=os.path.join(lasa_dir,scene_id)
         instance_folder=os.path.join(scene_folder,"instances")
         if os.path.exists(instance_folder)==False:
@@ -149,8 +156,8 @@ if __name__=="__main__":
             category="_".join(object_id.split("_")[0:-1])
             occ_save_dir=os.path.join(save_dir,"occ_data","arkit_"+category)
             other_save_dir=os.path.join(save_dir,"other_data","arkit_"+category)
-            pool.apply_async(process_object,(object_folder,occ_save_dir,other_save_dir,consider_alignment))
-            #process_object(object_folder,occ_save_dir,other_save_dir,consider_alignment)
+            #pool.apply_async(process_object,(object_folder,occ_save_dir,other_save_dir,consider_alignment))
+            process_object(object_folder,occ_save_dir,other_save_dir,consider_alignment)
         #process_object(folder_path)
-    pool.close()
-    pool.join()
+    #pool.close()
+    #pool.join()

@@ -95,7 +95,7 @@ lasa_dir=args.lasa_dir
 arkit_dir=args.arkit_dir
 
 scene_id_list=os.listdir(image_dir)
-for scene_id in scene_id_list:
+for scene_id in scene_id_list[0:10]:
     object_id_list=os.listdir(os.path.join(image_dir,scene_id))
     for object_id in object_id_list:
         print("processing %s %s"%(scene_id,object_id))
@@ -103,9 +103,10 @@ for scene_id in scene_id_list:
         #print(sub_category)
 
         mesh_folder=os.path.join(lasa_dir,scene_id,"instances",object_id)
-        mesh_path=glob.glob(mesh_folder+"/%s_gt*.obj"%(object_id))+glob.glob(mesh_folder+"/%s_watertight*.obj"%(object_id))
+        mesh_path=glob.glob(mesh_folder+"/%s_gt*.obj"%(object_id))+glob.glob(mesh_folder+"/*_watertight.obj")
         #print(mesh_path)
         if len(mesh_path)==0: #this instance does not have annotation
+            print("do not have annotation")
             continue
         mesh_path=mesh_path[0]
         mesh=trimesh.load(mesh_path)
@@ -115,6 +116,9 @@ for scene_id in scene_id_list:
             align_mat=np.loadtxt(align_mat_path)
 
         vert = np.asarray(mesh.vertices)
+        # flip the axis firstly, sorry for the confusing, since the alignment matrix is defined in another coordinate system
+        vert = vert[:, [2, 0, 1]]
+
         if args.consider_alignment: vert = np.dot(vert, align_mat[0:3, 0:3].T) + align_mat[0:3, 3]
         vert = vert[:, [1, 2, 0]]
         vert[:, 2] *= -1 #all coordinate are aligned with shapenet dataset
@@ -134,6 +138,7 @@ for scene_id in scene_id_list:
         proj_mat_save_folder=os.path.join(other_save_dir,"arkit_"+sub_category,"8_proj_matrix",object_id)
 
         if os.path.exists(image_folder)==False:
+            print("image folder does not exist")
             continue
         image_list = os.listdir(image_folder)
         image_list = [filename for filename in image_list if ".jpg" in filename]
@@ -172,7 +177,7 @@ for scene_id in scene_id_list:
         ref = np.array([
             [0, 1.0],  # Up
             [-1.0, 0],  # Left
-            [1.0, 0.0],  # Right
+            [0, 1.0],  # Right
             [0.0, -1.0]  # Down
         ])  # 4*2
         dir_list = [

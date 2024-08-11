@@ -18,6 +18,17 @@ occ_data/
         ├── cadid.npz   # contains samples and occupancy data 
         └── cadid.npy   # contains scale information (default is 1, except for ShapeNet dataset)
 ```
+The category and sub-category mapping is as followed:
+
+| Category | 3D-FUTURE                  | ABO          | ShapeNet   | LASA                                                            |
+|----------|----------------------------|--------------|------------|-----------------------------------------------------------------|
+| chair    | future_chair, future_stool | ABO_chair    | 03001627   | arkit_chair, arkit_stool                                        |  
+| table    | future_table               | ABO_table    | 04379243   | arkit_table                                                     |
+| sofa     | future_sofa                | ABO_sofa     | 04256520   | arkit_sofa                                                      |
+| bed      | future_bed                 | ABO_bed      | 02818832   | arkit_bed                                                       |
+| shelf    | future_shelf               | ABO_shelf    | 02871439   | arkit_shelf                                                     |
+| cabinet  | future_cabinet             | ABO_cabinet  | 02933112, 03207941 | arkit_cabinet, arkit_dishwasher, arkit_refrigerator, arkit_oven |
+
 Put **occ_data** **other_data** under **/LASA/submodules/DisCo/data**, put **open_clip_pytorch_model.bin** under **/LASA/submodules/DisCo/data**. 
 Currently, the synthetic dataset such as ShapeNet, ABO, and 3D-FUTURE only provide preprocessed data for download. 
 Then, run the following command to **unzip all the data** in **occ_data** and **other_data** by following commands (PS. make sure unrar and 7zip is installed):
