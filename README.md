@@ -6,7 +6,6 @@
 
 ![292080623-3372c2d9-c788-49de-af62-4d90d2d8468e](https://github.com/GAP-LAB-CUHK-SZ/LASA/assets/40767265/51397fbb-e7bc-44ce-ada9-e9d7f81842ae)
 
-
 ## Dataset
 Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKhLLcQ9SA_0yalBzt3SllRg2f4P8uFcAGY7ytDHAsDPg_NA/viewform?usp=sf_link">application form</a> 
 to access raw data of LASA dataset. (link and data has been updated since 24th, July)
@@ -32,6 +31,10 @@ We also provide preprocessed data for download.
 
 ## Training and Evaluation
 The training and evaluation code are under the submodule DisCo. Please refer to the [DisCo](https://github.com/GAP-LAB-CUHK-SZ/DisCo.git).
+Clone this repository and the submodules by:
+```angular2html
+git clone --recurse-submodules https://github.com/GAP-LAB-CUHK-SZ/DisCo.git
+```
 
 
 ## Demo (will be updated)
